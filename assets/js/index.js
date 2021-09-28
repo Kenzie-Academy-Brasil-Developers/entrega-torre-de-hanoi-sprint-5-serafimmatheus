@@ -1,3 +1,4 @@
+// CAPTURAR CLASSES, IDS DO HTML
 const pilar1 = document.querySelector("#pilar-01")
 const pilar2 = document.querySelector("#pilar-02")
 const pilar3 = document.querySelector("#pilar-03")
@@ -5,6 +6,7 @@ const contagem = document.querySelector(".count")
 const jogo = document.querySelector(".game")
 const botao = document.querySelector(".resetar button")
 
+// INTERAÇÃO COM OS BOTÕES
 pilar1.addEventListener("click", mover)
 pilar2.addEventListener("click", mover)
 pilar3.addEventListener("click", mover)
@@ -55,6 +57,7 @@ function mover(evt){
             bloco = false
         }
 
+    // INSERIR NA TELA, O CONTADOR
     contagem.innerHTML = `Contador de Movimentos: ${contadorMovimentos}`
     
     // QUANDO O PILAR 3 HOUVER TODAS AS PEÇAS, O JOGO FINALIZA
@@ -64,6 +67,7 @@ function mover(evt){
     }
 }
 
+// FUNÇÃO RESET, PARA REINICIAR O JOGO DESDE O INÍCIO
 function reset(){
     contadorMovimentos = 0
     contagem.innerHTML = `Contador de Movimentos: 0`
