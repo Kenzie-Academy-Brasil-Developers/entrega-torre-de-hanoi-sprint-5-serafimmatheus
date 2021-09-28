@@ -42,13 +42,11 @@ function mover(evt){
     if(bloco === false)
     {
         pilarSelecionado = topo.lastElementChild
-        //pilarSelecionado.style.marginBottom = "50px"
         bloco = true
     }  
         // SE O BLOCO FOR TRUE, RETORNARÁ FALSE 
         else
         {
-            //pilarSelecionado.style.marginBottom = "0px"
             bloco = false
         }
 
