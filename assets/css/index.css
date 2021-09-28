@@ -90,6 +90,14 @@ div.main-game__box-torre__torre{
     background-color: rgb(173, 132, 139);
 }
 
+.count, .game, .resetar{
+    text-align: center;
+    font-size: 30px;
+}
+.resetar button{
+    margin-top: 10px;
+    padding: 10px;
+}
 
 
 

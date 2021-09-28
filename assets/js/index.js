@@ -1,29 +1,79 @@
-const mainGame = document.querySelector('.main-game')
+const pilar1 = document.querySelector("#pilar-01")
+const pilar2 = document.querySelector("#pilar-02")
+const pilar3 = document.querySelector("#pilar-03")
+const contagem = document.querySelector(".count")
+const jogo = document.querySelector(".game")
+const botao = document.querySelector(".resetar button")
 
-function escuta(evt){
-    button = evt.target.id
-    console.log(button)
+pilar1.addEventListener("click", mover)
+pilar2.addEventListener("click", mover)
+pilar3.addEventListener("click", mover)
+botao.addEventListener("click", reset)
 
-    if (button === 'torre-01'){
-        alert(`${button} selecionado`)
-    }
-
-    if (button === 'torre-02'){
-        alert(`${button} selecionado`)
-    }
-
-    if (button === 'torre-03'){
-        alert(`${button} selecionado`)
-    }
-
-    if (button === 'torre-04'){
-        alert(`${button} selecionado`)
-    }
-
-    if (button === 'torre-05'){
-        alert(`${button} selecionado`)
+// FUNÇÃO PARA CRIAR OS BLOCOS, E COLOCAR DENTRO DOS PILARES
+function blocos(){
+    for(let i=0 ; i<5 ; i++)
+    {
+        const div = document.createElement("div")
+        div.setAttribute("id", "torre-0"+(i+1))
+        div.classList.add("main-game__box-torre__torre")
+        pilar1.appendChild(div)
     }
 }
 
+let bloco = false
+let pilarSelecionado
+let contadorMovimentos = 0
 
-mainGame.addEventListener('click', escuta)
+// FUNÇÃO PARA REALIZAR O MOVIMENTO DOS BLOCOS
+function mover(evt){
+    let topo = evt.currentTarget
+    
+    // CAPTURAR O ÚLTIMO BLOCO, OU SEJA, O BLOCO QUE ESTÁ NO TOPO
+    if(bloco === false)
+    {
+        pilarSelecionado = topo.lastElementChild
+        bloco = true
+    }  
+        // SENÃO, A VARIÁVEL IRÁ RETORNAR PARA SEU ESTADO PADRÃO (FALSE)
+        else
+        {
+            bloco = false
+        }
+
+    if(!topo.lastElementChild)
+    {
+        topo.appendChild(pilarSelecionado)
+        contadorMovimentos++
+        bloco = false
+    }
+        // SE A LARGURA DO BLOCO DO TOPO FOR MAIOR QUE O PILAR QUE ESTÁ SELECIONADO, ENTÃO SERÁ INSERIDO NO PILAR
+        else if(topo.lastElementChild.clientWidth > pilarSelecionado.clientWidth)
+        {
+            topo.appendChild(pilarSelecionado)
+            contadorMovimentos++
+            bloco = false
+        }
+
+    contagem.innerHTML = `Contador de Movimentos: ${contadorMovimentos}`
+    
+    // QUANDO O PILAR 3 HOUVER TODAS AS PEÇAS, O JOGO FINALIZA
+    if(pilar3.childElementCount >= 5)
+    {
+        jogo.innerHTML = `Fim de Jogo`
+    }
+}
+
+function reset(){
+    contadorMovimentos = 0
+    contagem.innerHTML = `Contador de Movimentos: 0`
+    jogo.innerHTML = `O jogo está em andamento`
+
+    pilar1.innerHTML = ``
+    pilar2.innerHTML = ``
+    pilar3.innerHTML = ``
+    blocos()
+}
+
+blocos()
+mover()

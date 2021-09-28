@@ -11,19 +11,12 @@
 <body>
     
     <header>
-        <h1>jogo Torre de Hanói</h1>
+        <h1>Jogo Torre de Hanói</h1>
     </header>
 
     <main>
-
         <section class="main-game">
-            <div id="pilar-01" class="main-game__box-torre">
-                <div id="torre-01" class="main-game__box-torre__torre"></div>
-                <div id="torre-02" class="main-game__box-torre__torre"></div>
-                <div id="torre-03" class="main-game__box-torre__torre"></div>
-                <div id="torre-04" class="main-game__box-torre__torre"></div>
-                <div id="torre-05" class="main-game__box-torre__torre"></div>
-            </div><!--main-game__torre-->
+            <div id="pilar-01" class="main-game__box-torre"></div><!--main-game__torre-->
 
             <div id="pilar-02" class="main-game__box-torre"></div><!--main-game__torre-->
 
@@ -31,6 +24,17 @@
         </section><!--main-game-->
     </main>
 
+    <footer>
+        <div class="count">
+            Contador de Movimentos: 0
+        </div>
+        <div class="game">
+            O jogo está em andamento
+        </div>
+        <div class="resetar">
+            <button>Reset Game</button>
+        </div>
+    </footer>
     
     <script src="assets/js/index.js"></script>
 </body>
