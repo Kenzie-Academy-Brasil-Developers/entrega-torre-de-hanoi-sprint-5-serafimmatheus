@@ -23,6 +23,12 @@ function blocos(){
     }
 }
 
+
+// TRUE === ALGO DENTRO
+// FALSE === UNDEFINED
+
+// VARIÁVEL BLOCO INICIA (FALSO), COMO SE NÃO HOUVESSE NADA
+
 let bloco = false
 let pilarSelecionado
 let contadorMovimentos = 0
@@ -30,19 +36,23 @@ let contadorMovimentos = 0
 // FUNÇÃO PARA REALIZAR O MOVIMENTO DOS BLOCOS
 function mover(evt){
     let topo = evt.currentTarget
+    console.log(topo)
     
     // CAPTURAR O ÚLTIMO BLOCO, OU SEJA, O BLOCO QUE ESTÁ NO TOPO
     if(bloco === false)
     {
         pilarSelecionado = topo.lastElementChild
+        //pilarSelecionado.style.marginBottom = "50px"
         bloco = true
     }  
-        // SENÃO, A VARIÁVEL IRÁ RETORNAR PARA SEU ESTADO PADRÃO (FALSE)
+        // SE O BLOCO FOR TRUE, RETORNARÁ FALSE 
         else
         {
+            //pilarSelecionado.style.marginBottom = "0px"
             bloco = false
         }
 
+    // O PILAR QUE FOR SELECIONADO, MOVERÁ O BLOCO ATUAL
     if(!topo.lastElementChild)
     {
         topo.appendChild(pilarSelecionado)
