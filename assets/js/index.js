@@ -6,14 +6,13 @@ const contagem = document.querySelector(".count")
 const jogo = document.querySelector(".game")
 const botao = document.querySelector(".resetar button")
 const nivelGame = document.querySelector('.dificuldade')
-
+let selectNivel = 0
 
 nivelGame.addEventListener('click', selectNivelGame)
 
 
 function selectNivelGame(evt){
     let btnSelect = evt.target.id
-    let selectNivel = 0
     if (btnSelect === 'dificil'){
         selectNivel = 5
     }if (btnSelect === 'medio'){
@@ -22,7 +21,10 @@ function selectNivelGame(evt){
         selectNivel = 3
     }  
     nivelGame.style.display = 'none'
-    return blocos(selectNivel)
+    jogo.innerText = 'Jogo em andamento...'
+    jogo.style.backgroundColor = 'yellow'
+    blocos()
+    return selectNivel
 }
 
 // INTERAÇÃO COM OS BOTÕES
@@ -32,10 +34,9 @@ pilar3.addEventListener("click", mover)
 botao.addEventListener("click", reset)
 
 // FUNÇÃO PARA CRIAR OS BLOCOS, E COLOCAR DENTRO DOS PILARES
-blocos()
-function blocos(nivel){
-
-    for(let i=0 ; i < nivel ; i++)
+function blocos(){
+    
+    for(let i=0 ; i < selectNivel; i++)
     {
         const div = document.createElement("div")
         div.setAttribute("id", "torre-0"+(i+1))
@@ -56,7 +57,7 @@ function mover(evt){
     if(bloco === false)
     {
         pilarSelecionado = topo.lastElementChild
-        pilarSelecionado.style.marginBottom = '50px'
+        pilarSelecionado.style.marginBottom = '2vh'
         bloco = true
     }  
         // SENÃO, A VARIÁVEL IRÁ RETORNAR PARA SEU ESTADO PADRÃO (FALSE)
@@ -83,9 +84,10 @@ function mover(evt){
     // INSERIR NA TELA, O CONTADOR
     contagem.innerHTML = `Contador de Movimentos: ${contadorMovimentos}`
     // QUANDO O PILAR 3 HOUVER TODAS AS PEÇAS, O JOGO FINALIZA
-    if(pilar3.childElementCount >= 3)
+    if(pilar3.childElementCount >= selectNivel)
     {
         jogo.innerHTML = `Fim de Jogo`
+        jogo.style.backgroundColor = 'green'
         botao.style.backgroundColor = 'green'
         botao.style.cursor = 'pointer'
         botao.style.border = 'none'
@@ -101,8 +103,8 @@ function mover(evt){
 function reset(){
     contadorMovimentos = 0
     contagem.innerHTML = `Contador de Movimentos: 0`
-    jogo.innerHTML = `O jogo está em andamento`
-
+    jogo.innerHTML = `Aguardando o usuário..`
+    jogo.style.backgroundColor = 'white'
     pilar1.innerHTML = ``
     pilar2.innerHTML = ``
     pilar3.innerHTML = ``
@@ -112,7 +114,6 @@ function reset(){
     botao.style.border = 'none'
     // botao.style.color = 'white'
     // botao.style.fontSize = '25px'
-    blocos()
 }
 
 
