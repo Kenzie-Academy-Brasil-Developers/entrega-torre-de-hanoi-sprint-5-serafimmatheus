@@ -1,11 +1,30 @@
 // CAPTURAR CLASSES, IDS DO HTML
-const pilar1 = document.querySelector("#pilar-01")
-const pilar2 = document.querySelector("#pilar-02")
-const pilar3 = document.querySelector("#pilar-03")
 const contagem = document.querySelector(".count")
 const jogo = document.querySelector(".game")
 const botao = document.querySelector(".resetar button")
 const nivelGame = document.querySelector('.dificuldade')
+const pilares = document.querySelector(".main-game")
+
+const div1 = document.createElement("div")
+const div2 = document.createElement("div")
+const div3 = document.createElement("div")
+
+div1.classList.add("main-game__box-torre")
+div2.classList.add("main-game__box-torre")
+div3.classList.add("main-game__box-torre")
+
+div1.setAttribute("id", "pilar-01")
+div2.setAttribute("id", "pilar-02")
+div3.setAttribute("id", "pilar-03")
+
+pilares.appendChild(div1)
+pilares.appendChild(div2)
+pilares.appendChild(div3)
+
+const pilar1 = document.querySelector("#pilar-01")
+const pilar2 = document.querySelector("#pilar-02")
+const pilar3 = document.querySelector("#pilar-03")
+
 let selectNivel = 0
 
 nivelGame.addEventListener('click', selectNivelGame)
